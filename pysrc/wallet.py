@@ -36,7 +36,10 @@ def list_keys(name, psw) -> Dict[str, str]:
 def get_public_keys():
     ret = _pyeoskit.wallet_get_public_keys()
     ret = json.loads(ret)
-    return ret['data']
+    fret = []
+    for d in ret['data']:
+        fret.append(d.replace("EOS", "AM", 1))
+    return fret
 
 def lock_all():
     pass
