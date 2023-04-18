@@ -22,7 +22,7 @@ setup(
     description="Python Toolkit for EOS",
     author='learnforpractice',
     license="MIT",
-    url="https://github.com/learnforpractice/pyeoskit",
+    url="https://github.com/armoniax/pyeoskit",
     packages=['pyeoskit'],
     # The extra '/' was *only* added to check that scikit-build can handle it.
     package_dir={'pyeoskit': 'pysrc'},
