@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(line
 logger=logging.getLogger(__name__)
 test_dir = os.path.dirname(__file__)
 
-eosapi.set_node('http://127.0.0.1:8899')
+eosapi.set_node('http://127.0.0.1:8888')
 
 if os.path.exists('mywallet.wallet'):
     os.remove('mywallet.wallet')
@@ -51,7 +51,6 @@ class Test(object):
 
         # eosapi.unpack_transaction(raw)
 
-    
     def test_basic(self):
         mywallet = 'mywallet2'
         if os.path.exists(f'{mywallet}.wallet'):

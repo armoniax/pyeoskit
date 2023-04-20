@@ -128,7 +128,7 @@ class ChainApiAsync(RPCInterface, ChainNative):
             signatures = set()
             sign_keys = required_keys & set(local_wallet_pub_keys)
             for key in sign_keys:
-                signatures.add(tx.sign(key.replace("AM", "EOS", 1)))
+                signatures.add(tx.sign(key))
 
             packed_tx = tx.pack(compress, False)
             sign_keys = required_keys & set(ledger_pub_keys)
@@ -370,7 +370,7 @@ class ChainApiAsync(RPCInterface, ChainNative):
             abi = json.dumps(abi)
 
         abi = self.pack_abi(self.chain_index, abi)
-        setabi = self.pack_args(config.system_contract, 'setabi', {'account':account, 'abi':abi.hex()})    
+        setabi = self.pack_args(config.system_contract, 'setabi', {'account':account, 'abi':abi.hex()})
         ret = await self.push_action(config.system_contract, 'setabi', setabi, {account:'active'}, indices=indices, payer=payer, payer_permission=payer_permission)
         self.db.remove_abi(account)
         self.clear_abi_cache(account)
@@ -448,7 +448,7 @@ class ChainApiAsync(RPCInterface, ChainNative):
         if not isinstance(args, bytes):
             args = str(args)
             args = args.encode('utf8')
-        
+
         if not permissions:
             permissions = {account: 'active'}
 
